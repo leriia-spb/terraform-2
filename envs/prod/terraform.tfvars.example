@@ -1,0 +1,4 @@
+os_username   = "YOUR_USERNAME"
+os_password   = "YOUR_PASSWORD"
+os_project_id = "YOUR_PROJECT_ID"
+keypair_name  = "YOUR_SSH_KEY"

@@ -1,0 +1,19 @@
+global
+    daemon
+    maxconn 256
+
+defaults
+    mode http
+    timeout connect 5s
+    timeout client  30s
+    timeout server  30s
+
+frontend http_front
+    bind *:80
+    default_backend nodes
+
+backend nodes
+    balance roundrobin
+%{ for ip in backend_ips ~}
+    server be-${replace(ip, ".", "-")} ${ip}:8080 check
+%{ endfor ~}

@@ -1,0 +1,27 @@
+#cloud-config
+package_update: true
+packages:
+%{ if role == "frontend" || role == "both" ~}
+  - haproxy
+%{ endif ~}
+%{ if role == "backend"  || role == "both" ~}
+  - nginx
+%{ endif ~}
+
+write_files:
+%{ if role == "frontend" || role == "both" ~}
+  - path: /etc/haproxy/haproxy.cfg
+    content: |
+${indent(6, haproxy_cfg)}
+%{ endif ~}
+%{ if role == "backend"  || role == "both" ~}
+  - path: /etc/nginx/sites-available/default
+    content: |
+${indent(6, nginx_cfg)}
+%{ endif ~}
+
+runcmd:
+  - systemctl enable nginx || true
+  - systemctl restart nginx || true
+  - systemctl enable haproxy || true
+  - systemctl restart haproxy || true

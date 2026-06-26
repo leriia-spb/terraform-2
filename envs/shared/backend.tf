@@ -1,0 +1,13 @@
+terraform {
+  backend "s3" {
+    bucket                      = "tf-states-va.aleshina"
+    key                         = "shared/terraform.tfstate"
+    region                      = "ru-msk"
+    endpoints                   = { s3 = "https://hb.ru-msk.vkcs.cloud" }
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
+    skip_metadata_api_check     = true
+    skip_s3_checksum            = true
+  }
+}

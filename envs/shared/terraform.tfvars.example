@@ -1,0 +1,5 @@
+os_username   = "YOUR_USERNAME"
+os_password   = "YOUR_PASSWORD"
+os_project_id = "YOUR_PROJECT_ID"
+student_suffix = "aleshina"
+dns_admin_email = "admin@example.com"

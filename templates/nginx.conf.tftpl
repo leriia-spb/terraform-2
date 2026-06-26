@@ -1,0 +1,7 @@
+server {
+    listen 8080 default_server;
+    location / {
+        return 200 "Hello from ${env} on ${hostname}\n";
+        add_header Content-Type text/plain;
+    }
+}
